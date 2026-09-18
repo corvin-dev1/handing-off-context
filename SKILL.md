@@ -40,14 +40,18 @@ Append a new dated section each time a handoff happens; never overwrite prior se
 ```
 ## <date> — <short task name>
 
-**Qué se hizo:** <what was actually built/fixed/decided this segment>
+**Qué se hizo:** <what was actually built/fixed/decided this segment — branch/diff state, commands/tests already run>
 
-**Por qué:** <the reasoning — especially for any non-obvious decision, so it doesn't get relitigated later>
+**Por qué:** <the reasoning — especially rejected paths and non-obvious decisions, so they don't get relitigated>
 
-**Pendiente:** <what's still open, and what's blocking it (e.g. "needs live user confirmation")>
+**Pendiente:** <what's still open, the exact next acceptance check, and what's blocking it>
+
+**Artefactos:** <references/IDs to logs, diffs, screenshots — link out, never paste raw output in here>
 ```
 
-This file is the thing that survives after the chat is gone — write it as if a future session (or a different person) has to understand a decision with zero other context.
+This file is the thing that survives after the chat is gone — write it as if a future session (or a different person) has to understand a decision with zero other context. **Write to it at the end of every session that made real progress, not only when a handoff is explicitly requested** — an unwritten segment is a segment that's lost once the chat closes.
+
+Keep it from rotting into a junk drawer: once it holds more than ~5 dated entries, fold the older ones into a one-paragraph summary at the top (or move them to an `archive.md` next to it) — a growing pile of stale entries is exactly what the next chat has to skim past to find what's current.
 
 ## Ephemeral Handoff Prompt Template
 
@@ -76,6 +80,8 @@ Keep it under ~300 words. Structure:
 
 The last line is not optional boilerplate — always include it verbatim. Without it, the new chat's own "Auto Mode" bias (make the reasonable call and keep going instead of stopping to check) can read the handoff's "próximo paso concreto" as authorization to act immediately, before the user has actually said go.
 
+**No chat tool (Claude web, no Code/hooks):** collapse the ephemeral prompt into the Project's custom instructions instead of pasting it each time — it becomes always-on, and the only artifact you still move manually is the persistent file (paste it at the start of each new chat). Same split, one less step.
+
 ## The Rule for the NEW Chat
 
 State this explicitly in the handoff prompt, not just as a note to self:
@@ -99,3 +105,6 @@ State this explicitly in the handoff prompt, not just as a note to self:
 - Listing every skill available instead of the 1-2 actually relevant ones.
 - Forgetting to name the exact graph path — the new chat then has to search for it.
 - Overwriting the persistent file instead of appending — destroys the trail of past decisions the file exists to preserve.
+- Pasting raw logs/diffs/screenshots into the persistent file instead of a reference — turns the map into the warehouse, and bloats every future read of it.
+- Letting the persistent file grow unbounded — fold or archive old entries once it passes ~5, or the next chat wastes tokens skimming stale ones to find what's current.
+- Writing the persistent file only when a handoff is requested, never at session close — loses everything from a session that ended without one.
