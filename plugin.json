@@ -1,0 +1,8 @@
+{
+  "name": "handing-off-context",
+  "version": "1.0.0",
+  "description": "Hand off a long, expensive conversation to a fresh chat with a compact prompt, keeping graph/grep-first lookups over full-file rereads.",
+  "author": "corvin-dev1",
+  "license": "MIT",
+  "skills": ["SKILL.md"]
+}
